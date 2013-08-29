@@ -30,7 +30,7 @@ public class PreviousYear {
 		    Connection con = DriverManager.getConnection(HOST + DB, props);
 		    Statement s = con.createStatement();
 		    //String query="";
-		    String query="select distinct lake from citclops.transparency where id>=7874;";
+		    String query="select distinct lake from citclops.transparency where id>3954;";
 			System.out.println(query);
 		    ResultSet resultado=s.executeQuery(query);
 		    while(resultado.next()){
@@ -42,8 +42,8 @@ public class PreviousYear {
 		}
 	}
 	private static void convertUser(String string) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		Vector<String> paciente2symbol=new Vector<String>();
-		Object[][] paciente = null;
+		Vector<String> lake2symbol=new Vector<String>();
+		Object[][] lake = null;
 		try {	 
 			Properties props = new Properties();
 		    props.setProperty("user", ACCOUNT);
@@ -54,29 +54,29 @@ public class PreviousYear {
 			String query="select m from citclops.transparency where lake like \""+string+"\" order by year;";
 			System.out.println(query);
 		    ResultSet resultado=s.executeQuery(query);
-		    paciente=ResultSetToArray(resultado);
+		    lake=ResultSetToArray(resultado);
 		    con.close();
 		    }catch(Exception e){
 			System.out.println("Error truncate "+e);
 		    }
-		System.out.println("paciente.length: "+paciente.length+" paciente[0].length: "+paciente[0].length);
+		System.out.println("lake.length: "+lake.length+" lake[0].length: "+lake[0].length);
 
-		if (paciente.length>1){
-			for (int i=1;i<paciente.length;i++){
-				for (int j=0;j<paciente[0].length;j++){
-					if (paciente[i-1][j]!=null)paciente2symbol.add(j,paciente[i-1][j]+"");
-					else paciente2symbol.add("-1");
+		if (lake.length>1){
+			for (int i=1;i<lake.length;i++){
+				for (int j=0;j<lake[0].length;j++){
+					if (lake[i-1][j]!=null)lake2symbol.add(j,lake[i-1][j]+"");
+					else lake2symbol.add("-1");
 				}
-				paciente2symbol.add(paciente[0].length,""+paciente[i][0]);
-				migrate2DB(paciente2symbol,string);
-			paciente2symbol.removeAllElements();
+				lake2symbol.add(lake[0].length,""+lake[i][0]);
+				migrate2DB(lake2symbol,string);
+			lake2symbol.removeAllElements();
 			}
 		}
 		
 	}
 	
-	private static void migrate2DB(Vector<String> paciente2symbol, String user) {
-		System.out.println("Longitud: "+paciente2symbol.size());
+	private static void migrate2DB(Vector<String> lake2symbol, String user) {
+		System.out.println("Longitud: "+lake2symbol.size());
 		try {	 
 	         Properties props = new Properties();
 	         props.setProperty("user", ACCOUNT);
@@ -85,8 +85,8 @@ public class PreviousYear {
 	         Connection con = DriverManager.getConnection(HOST + DB, props);
 	         Statement s = con.createStatement();	
 	         String query="INSERT INTO citclops.previous(lake,m,solution) VALUES(\""+user+"\"";
-	         for (int k=0;k<paciente2symbol.size();k++){
-	        	 query+=","+paciente2symbol.get(k)+"";
+	         for (int k=0;k<lake2symbol.size();k++){
+	        	 query+=","+lake2symbol.get(k)+"";
 	         }    	 
 	         query+=");";
 	         System.out.println("Query" +query);
@@ -94,7 +94,7 @@ public class PreviousYear {
 	         con.close();
 	         
 		}catch(Exception e){
-			System.out.println("Excepción inserción taubla D: "+e);
+			System.out.println("ExcepciÃ³n inserciÃ³n taubla D: "+e);
 		}
 	}
 	private static Object[][] ResultSetToArray(ResultSet rs){
