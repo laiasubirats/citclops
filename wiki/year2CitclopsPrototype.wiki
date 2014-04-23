@@ -1,0 +1,7 @@
+=D6.2: Definition and implementation of year-2 prototype (Y2P) and description of the interaction among co=
+
+   * getRisk2weeks(String profile). Returns: no, mild or high risk using satellite, citizens, buoys and historic data
+getFU(). Returns the prediction of FU colour the next month
+   * Updated Citclops database
+   * Markers’ images
+   * Coastline data
