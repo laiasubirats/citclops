@@ -1,8 +1,8 @@
 =D6.1 Definition and implementation of the interfaces and year-1 Citclops prototype (Y1P).=
  
-1. Colour and transparency time representation libraries*. These libraries are developed in Java.
+1. *Colour and transparency time representation libraries*. These libraries are developed in Java.
 
-2. Citclops Database (version 29th October 2013)*. A MySQL Citclops database is created.
+2. *Citclops Database (version 29th October 2013)*. A MySQL Citclops database is created.
 
-3. Coastwatch beach segmentation map*. A Coastwatch map of the Catalonian coast is created during Coastwatch Catalonia 2013 (by courtesy of Javier García Robles)
+3. *Coastwatch beach segmentation map*. A Coastwatch map of the Catalonian coast is created during Coastwatch Catalonia 2013 (by courtesy of Javier García Robles)
   
